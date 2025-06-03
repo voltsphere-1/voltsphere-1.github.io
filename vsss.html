@@ -10,6 +10,12 @@
       padding: 0;
       background-color: #f0f0f0;
       color: #333;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark-mode {
+      background-color: #121212;
+      color: #f0f0f0;
     }
 
     header {
@@ -21,7 +27,7 @@
     }
 
     header img.logo {
-      max-width: 100px;
+      max-width: 160px;
       position: absolute;
       top: 20px;
       left: 20px;
@@ -50,6 +56,12 @@
       margin-top: 20px;
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark-mode .section {
+      background-color: #1e1e1e;
+      color: #ddd;
     }
 
     ul {
@@ -70,6 +82,12 @@
       margin: 20px 0;
     }
 
+    body.dark-mode blockquote {
+      background-color: #2a2a2a;
+      color: #ccc;
+      border-left-color: #4f70ff;
+    }
+
     img {
       max-width: 250px;
       border-radius: 12px;
@@ -86,6 +104,12 @@
       color: white;
       border-radius: 6px;
       text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .button:hover {
+      background-color: #0a0e9b;
     }
 
     form {
@@ -98,6 +122,15 @@
       margin: 8px 0;
       border-radius: 5px;
       border: 1px solid #ccc;
+      background-color: #fff;
+      color: #000;
+    }
+
+    body.dark-mode input,
+    body.dark-mode textarea {
+      background-color: #2a2a2a;
+      color: #f0f0f0;
+      border: 1px solid #444;
     }
 
     button {
@@ -108,6 +141,11 @@
       border-radius: 6px;
       cursor: pointer;
     }
+
+    .toggle-container {
+      text-align: center;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -117,6 +155,10 @@
     <h1>Voltsphere Systems LLC</h1>
     <p>Signware & Digital Display Solutions</p>
   </header>
+
+  <div class="toggle-container">
+    <button class="button" onclick="toggleMode()">Switch Appearance</button>
+  </div>
 
   <img src="https://i.postimg.cc/mg5hST6b/Download-Stop-Road-Sign-Warning-Royalty-Free-Vector-Graphic-Pixabay-Google-Chrome-6-3-2025-3.png" alt="Sample Work">
   <img src="https://i.postimg.cc/3wGp4yJM/Download-Stop-Road-Sign-Warning-Royalty-Free-Vector-Graphic-Pixabay-Google-Chrome-6-3-2025-3.png" alt="Sample Work">
@@ -188,6 +230,12 @@
       <button type="submit">Send</button>
     </form>
   </section>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
 
 </body>
 </html>
