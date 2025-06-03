@@ -10,13 +10,29 @@
       padding: 0;
       background-color: #f0f0f0;
       color: #333;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark-mode {
+      background-color: #121212;
+      color: #f0f0f0;
     }
 
     header {
       background-color: #1016c4;
       color: white;
-      padding: 40px 20px;
+      padding: 40px 20px 20px;
       text-align: center;
+      position: relative;
+    }
+
+    header img.logo {
+      max-width: 160px;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
 
     h1 {
@@ -40,6 +56,12 @@
       margin-top: 20px;
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark-mode .section {
+      background-color: #1e1e1e;
+      color: #ddd;
     }
 
     ul {
@@ -60,6 +82,12 @@
       margin: 20px 0;
     }
 
+    body.dark-mode blockquote {
+      background-color: #2a2a2a;
+      color: #ccc;
+      border-left-color: #4f70ff;
+    }
+
     img {
       max-width: 250px;
       border-radius: 12px;
@@ -76,6 +104,12 @@
       color: white;
       border-radius: 6px;
       text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .button:hover {
+      background-color: #0a0e9b;
     }
 
     form {
@@ -88,6 +122,15 @@
       margin: 8px 0;
       border-radius: 5px;
       border: 1px solid #ccc;
+      background-color: #fff;
+      color: #000;
+    }
+
+    body.dark-mode input,
+    body.dark-mode textarea {
+      background-color: #2a2a2a;
+      color: #f0f0f0;
+      border: 1px solid #444;
     }
 
     button {
@@ -98,14 +141,24 @@
       border-radius: 6px;
       cursor: pointer;
     }
+
+    .toggle-container {
+      text-align: center;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
 
   <header>
+    <img src="https://i.postimg.cc/0QL3sX2g/hh-2.png" alt="Voltsphere Logo" class="logo">
     <h1>Voltsphere Systems LLC</h1>
     <p>Signware & Digital Display Solutions</p>
   </header>
+
+  <div class="toggle-container">
+    <button class="button" onclick="toggleMode()">Switch Appearance</button>
+  </div>
 
   <img src="https://i.postimg.cc/mg5hST6b/Download-Stop-Road-Sign-Warning-Royalty-Free-Vector-Graphic-Pixabay-Google-Chrome-6-3-2025-3.png" alt="Sample Work">
   <img src="https://i.postimg.cc/3wGp4yJM/Download-Stop-Road-Sign-Warning-Royalty-Free-Vector-Graphic-Pixabay-Google-Chrome-6-3-2025-3.png" alt="Sample Work">
@@ -132,8 +185,8 @@
 
   <section class="section">
     <h2 class="section-title">NSS Display Example</h2>
-    <img src="https://i.postimg.cc/RV0ChNvg/nss-2.png" alt="VoltSphere Display Example" style="max-width: 100%; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 0 auto; display: block;">
-    <p style="text-align: center; color: #555; margin-top: 10px;">Updated VSS digital display interface.</p>
+    <img src="https://i.postimg.cc/RV0ChNvg/nss-2.png" alt="NSS Display Example" style="max-width: 100%; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 0 auto; display: block;">
+    <p style="text-align: center; color: #555; margin-top: 10px;">Updated NSS digital display interface.</p>
   </section>
 
   <section class="section">
@@ -178,5 +231,12 @@
     </form>
   </section>
 
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
+
 </body>
 </html>
+  
