@@ -2,241 +2,90 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Voltsphere Systems LLC</title>
+  <title>Voltsphere Systems - Upload Your Sign Design</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f0f0f0;
-      color: #333;
-      transition: background-color 0.3s, color 0.3s;
+      padding: 20px;
     }
-
-    body.dark-mode {
-      background-color: #121212;
-      color: #f0f0f0;
-    }
-
-    header {
-      background-color: #1016c4;
-      color: white;
-      padding: 40px 20px 20px;
-      text-align: center;
-      position: relative;
-    }
-
-    header img.logo {
-      max-width: 160px;
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin: 0;
-    }
-
-    h2.section-title {
-      background-color: #1016c4;
-      color: white;
-      padding: 10px;
-      margin: 0;
-      text-align: center;
-    }
-
-    .section {
-      padding: 30px 20px;
-      max-width: 800px;
-      margin: auto;
-      background-color: white;
-      margin-top: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    body.dark-mode .section {
-      background-color: #1e1e1e;
-      color: #ddd;
-    }
-
-    ul {
-      list-style-type: disc;
-      padding-left: 20px;
-    }
-
-    li {
+    .product-img {
+      max-width: 300px;
       margin-bottom: 10px;
+      border-radius: 10px;
     }
-
-    blockquote {
-      border-left: 4px solid #1016c4;
-      padding-left: 16px;
-      font-style: italic;
-      color: #555;
-      background-color: #f9f9f9;
-      margin: 20px 0;
-    }
-
-    body.dark-mode blockquote {
-      background-color: #2a2a2a;
-      color: #ccc;
-      border-left-color: #4f70ff;
-    }
-
-    img {
-      max-width: 250px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      display: block;
-      margin: 20px auto;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 10px 20px;
-      margin: 10px 5px;
-      background-color: #1016c4;
-      color: white;
-      border-radius: 6px;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .button:hover {
-      background-color: #0a0e9b;
-    }
-
-    form {
+    .upload-section {
       margin-top: 20px;
     }
-
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      background-color: #fff;
-      color: #000;
-    }
-
-    body.dark-mode input,
-    body.dark-mode textarea {
-      background-color: #2a2a2a;
-      color: #f0f0f0;
-      border: 1px solid #444;
-    }
-
-    button {
-      background-color: #1016c4;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .toggle-container {
-      text-align: center;
+    .preview-img {
       margin-top: 10px;
+      max-width: 300px;
+      display: none;
+    }
+    .image-block {
+      margin-bottom: 30px;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <img src="https://i.postimg.cc/0QL3sX2g/hh-2.png" alt="Voltsphere Logo" class="logo">
-    <h1>Voltsphere Systems LLC</h1>
-    <p>Signware & Digital Display Solutions</p>
-  </header>
+  <h1>Submit Your Sign Design</h1>
 
-  <div class="toggle-container">
-    <button class="button" onclick="toggleMode()">Switch Appearance</button>
+  <!-- First image block -->
+  <div class="image-block">
+    <h2>Sample Sign Design 1</h2>
+    <img
+      src="https://i.postimg.cc/mg5hST6b/Download-Stop-Road-Sign-Warning-Royalty-Free-Vector-Graphic-Pixabay-Google-Chrome-6-3-2025-3.png"
+      alt="Sample Sign 1"
+      class="product-img"
+    >
   </div>
 
-  <img src="https://i.postimg.cc/mg5hST6b/Download-Stop-Road-Sign-Warning-Royalty-Free-Vector-Graphic-Pixabay-Google-Chrome-6-3-2025-3.png" alt="Sample Work">
-  <img src="https://i.postimg.cc/3wGp4yJM/Download-Stop-Road-Sign-Warning-Royalty-Free-Vector-Graphic-Pixabay-Google-Chrome-6-3-2025-3.png" alt="Sample Work">
+  <!-- Second image block -->
+  <div class="image-block">
+    <h2>Sample Sign Design 2</h2>
+    <img
+      src="https://i.postimg.cc/3wGp4yJM/Download-Stop-Road-Sign-Warning-Royalty-Free-Vector-Graphic-Pixabay-Google-Chrome-6-3-2025-3.png"
+      alt="Sample Sign 2"
+      class="product-img"
+    >
+  </div>
 
-  <section class="section">
-    <h2 class="section-title">Company Overview</h2>
-    <ul>
-      <li><strong>Name:</strong> Voltsphere Systems LLC</li>
-      <li><strong>Founded:</strong> 2024</li>
-      <li><strong>Location:</strong> Entebbe</li>
-      <li><strong>Mission:</strong> To illuminate brands and messages through cutting-edge, energy-efficient digital display solutions.</li>
-      <li><strong>Vision:</strong> To become a leading provider of smart, connected signage that transforms spaces and experiences.</li>
-    </ul>
-  </section>
+  <!-- Upload + Size input -->
+  <form action="#" method="post" enctype="multipart/form-data">
+    <div class="upload-section">
+      <label for="photo">Upload your own design:</label><br>
+      <input type="file" id="photo" name="photo" accept="image/*">
+    </div>
 
-  <section class="section">
-    <h2 class="section-title">Our Services</h2>
-    <ul>
-      <li>Custom LED Signs – Bespoke designs for businesses, retail, and events.</li>
-      <li>Digital Display Systems – High-definition indoor and outdoor digital screens.</li>
-      <li>Signware Software Integration – Easy content control and automation.</li>
-    </ul>
-  </section>
+    <div class="upload-section">
+      <label for="size">Enter preferred size (e.g., 4ft x 2ft):</label><br>
+      <input type="text" id="size" name="size" placeholder="Width x Height">
+    </div>
 
-  <section class="section">
-    <h2 class="section-title">NSS Display Example</h2>
-    <img src="https://i.postimg.cc/RV0ChNvg/nss-2.png" alt="NSS Display Example" style="max-width: 100%; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 0 auto; display: block;">
-    <p style="text-align: center; color: #555; margin-top: 10px;">Updated NSS digital display interface.</p>
-  </section>
+    <div class="upload-section">
+      <button type="submit">Submit</button>
+    </div>
+  </form>
 
-  <section class="section">
-    <h2 class="section-title">Why Choose Voltsphere</h2>
-    <ul>
-      <li>Smart Technology – Seamless integration with modern systems (IoT, remote access).</li>
-      <li>Reliable Support – Fast response, advice and technical help.</li>
-    </ul>
-  </section>
-
-  <section class="section">
-    <h2 class="section-title">Client Testimonial</h2>
-    <blockquote>
-      "Voltsphere's sign transformed my storefront visibility — sales jumped 30%!" <br>
-      <strong>– Kamuli Christopher</strong>
-    </blockquote>
-  </section>
-
-  <section class="section">
-    <h2 class="section-title">Contact Us</h2>
-    <ul>
-      <li>📞 Phone: +256741282363</li>
-      <li>📧 Email: voltsphere1@gmail.com</li>
-      <li>📍 Location: Entebbe</li>
-      <li>🔗 Instagram: <a href="https://www.instagram.com/voltsphere101" target="_blank">voltsphere101</a></li>
-    </ul>
-    <a class="button" href="https://wa.me/256741282363" target="_blank">Chat on WhatsApp</a>
-    <a class="button" href="https://www.instagram.com/voltsphere101" target="_blank">Visit Instagram</a>
-
-    <h3>Send a Message</h3>
-    <form>
-      <label for="name">Your Name</label>
-      <input type="text" id="name" placeholder="Enter your name" required>
-
-      <label for="email">Your Email</label>
-      <input type="email" id="email" placeholder="Enter your email" required>
-
-      <label for="message">Your Message</label>
-      <textarea id="message" rows="4" placeholder="Type your message here..." required></textarea>
-
-      <button type="submit">Send</button>
-    </form>
-  </section>
+  <!-- Optional preview -->
+  <img id="preview" class="preview-img" alt="Preview">
 
   <script>
-    function toggleMode() {
-      document.body.classList.toggle('dark-mode');
-    }
+    const input = document.getElementById('photo');
+    const preview = document.getElementById('preview');
+
+    input.addEventListener('change', function() {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+        }
+        reader.readAsDataURL(file);
+      }
+    });
   </script>
 
 </body>
 </html>
-  
