@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Voltsphere Systems LLC</title>
   <style>
     body {
@@ -10,31 +11,43 @@
       padding: 0;
       background-color: #f0f0f0;
       color: #333;
-      transition: background-color 0.3s, color 0.3s;
+      transition: background 0.3s, color 0.3s;
     }
 
     body.dark {
       background-color: #1a1a1a;
-      color: #eee;
+      color: #ddd;
     }
 
     header {
       background-color: #1016c4;
       color: white;
-      padding: 20px;
+      padding: 30px 20px;
       text-align: center;
+      position: relative;
     }
 
-    header img {
-      max-width: 180px;
-      height: auto;
-      display: block;
-      margin: 10px auto;
+    .logo {
+      width: 120px;
+      border-radius: 10px;
+    }
+
+    .toggle-mode {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 6px 12px;
+      background-color: white;
+      color: #1016c4;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
     }
 
     h1 {
-      font-size: 2.2rem;
-      margin: 0;
+      font-size: 2.5rem;
+      margin: 10px 0 0;
     }
 
     h2.section-title {
@@ -47,16 +60,15 @@
 
     .section {
       padding: 30px 20px;
-      max-width: 800px;
+      max-width: 900px;
       margin: 20px auto;
       background-color: white;
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-      transition: background-color 0.3s;
     }
 
     body.dark .section {
-      background-color: #333;
+      background-color: #2a2a2a;
     }
 
     ul {
@@ -77,9 +89,32 @@
       margin: 20px 0;
     }
 
-    body.dark blockquote {
-      background-color: #222;
-      color: #ccc;
+    .slider-container {
+      display: flex;
+      overflow-x: auto;
+      padding: 10px 0;
+      gap: 16px;
+      scroll-behavior: smooth;
+      justify-content: center;
+    }
+
+    .slider-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slider-item {
+      text-align: center;
+    }
+
+    .slider-item img {
+      width: 180px;
+      height: 130px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: block;
+      margin: 0 auto 6px;
+      cursor: pointer;
     }
 
     .button {
@@ -113,83 +148,77 @@
       cursor: pointer;
     }
 
-    #carousel {
-      text-align: center;
-      position: relative;
+    .catalog {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
     }
 
-    #carousel-img {
-      max-width: 320px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      transition: opacity 0.5s;
-    }
-
-    #carousel-caption {
-      margin-top: 10px;
-      font-style: italic;
-      color: #666;
-    }
-
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: rgba(16, 22, 196, 0.7);
-      color: white;
-      border: none;
-      font-size: 20px;
+    .catalog-item {
+      width: 180px;
+      background: #fafafa;
+      border-radius: 10px;
       padding: 10px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .catalog-item img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
       cursor: pointer;
-      border-radius: 50%;
     }
 
-    .arrow:hover {
-      background-color: rgba(16, 22, 196, 1);
+    body.dark .catalog-item {
+      background-color: #333;
     }
 
-    #prev {
-      left: 10px;
+    .product-details {
+      margin-top: 20px;
     }
 
-    #next {
-      right: 10px;
+    .product-details img {
+      max-width: 100%;
+      border-radius: 10px;
     }
 
-    .appearance-toggle {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      background-color: #1016c4;
-      color: white;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      z-index: 999;
+    a {
+      color: #1016c4;
     }
 
+    body.dark a {
+      color: #90c4ff;
+    }
   </style>
 </head>
 <body>
 
-  <button class="appearance-toggle" onclick="toggleAppearance()">Switch Appearance</button>
-
   <header>
-    <img src="https://i.postimg.cc/0QL3sX2g/hh-2.png" alt="Voltsphere Logo">
+    <img src="https://i.postimg.cc/0QL3sX2g/hh-2.png" alt="Voltsphere Logo" class="logo" />
+    <button class="toggle-mode" onclick="toggleDarkMode()">Switch Appearance</button>
     <h1>Voltsphere Systems LLC</h1>
     <p>Signware & Digital Display Solutions</p>
   </header>
 
-  <section class="section">
-    <h2 class="section-title">Our Displays</h2>
-    <div id="carousel">
-      <button class="arrow" id="prev">&#10094;</button>
-      <img id="carousel-img" src="https://i.postimg.cc/mg5hST6b/Download-Stop-Road-Sign-Warning-Royalty-Free-Vector-Graphic-Pixabay-Google-Chrome-6-3-2025-3.png" alt="Display 1">
-      <button class="arrow" id="next">&#10095;</button>
-      <p id="carousel-caption">Stop Sign Digital Display</p>
+  <!-- Slider -->
+  <div class="slider-container">
+    <div class="slider-item">
+      <img src="https://i.postimg.cc/RV0ChNvg/nss-2.png" alt="Digital Display 1">
+      <p>Outdoor Display</p>
     </div>
-  </section>
+    <div class="slider-item">
+      <img src="https://i.postimg.cc/mg5hST6b/Download-Stop-Road-Sign-Warning-Royalty-Free-Vector-Graphic-Pixabay-Google-Chrome-6-3-2025-3.png" alt="Digital Display 2">
+      <p>Warning Sign</p>
+    </div>
+    <div class="slider-item">
+      <img src="https://i.postimg.cc/3wGp4yJM/Download-Stop-Road-Sign-Warning-Royalty-Free-Vector-Graphic-Pixabay-Google-Chrome-6-3-2025-3.png" alt="Display Example">
+      <p>Traffic Sign</p>
+    </div>
+  </div>
 
   <section class="section">
     <h2 class="section-title">Company Overview</h2>
@@ -203,28 +232,33 @@
   </section>
 
   <section class="section">
-    <h2 class="section-title">Our Services</h2>
-    <ul>
-      <li>Custom LED Signs – Bespoke designs for businesses, retail, and events.</li>
-      <li>Digital Display Systems – High-definition indoor and outdoor digital screens.</li>
-      <li>Signware Software Integration – Easy content control and automation.</li>
-    </ul>
-  </section>
+    <h2 class="section-title">Product Catalog</h2>
+    <div class="catalog">
+      <div class="catalog-item">
+        <a href="#product1"><img src="https://i.postimg.cc/RV0ChNvg/nss-2.png" alt="LED Board" /></a>
+        <h4>LED Board</h4>
+        <p>$150</p>
+      </div>
+      <div class="catalog-item">
+        <a href="#product2"><img src="https://i.postimg.cc/mg5hST6b/Download-Stop-Road-Sign-Warning-Royalty-Free-Vector-Graphic-Pixabay-Google-Chrome-6-3-2025-3.png" alt="Stop Sign" /></a>
+        <h4>Stop Sign</h4>
+        <p>$80</p>
+      </div>
+    </div>
 
-  <section class="section">
-    <h2 class="section-title">Why Choose Voltsphere</h2>
-    <ul>
-      <li>Smart Technology – Seamless integration with modern systems (IoT, remote access).</li>
-      <li>Reliable Support – Fast response, advice and technical help.</li>
-    </ul>
-  </section>
+    <div id="product1" class="product-details">
+      <h3>LED Board</h3>
+      <img src="https://i.postimg.cc/RV0ChNvg/nss-2.png" alt="LED Board Full">
+      <p>High-brightness digital LED board ideal for outdoor advertising. Weather resistant and remotely programmable.</p>
+      <strong>Price: $150</strong>
+    </div>
 
-  <section class="section">
-    <h2 class="section-title">Client Testimonial</h2>
-    <blockquote>
-      "Voltsphere's sign transformed my storefront visibility — sales jumped 30%!" <br>
-      <strong>– Kamuli Christopher</strong>
-    </blockquote>
+    <div id="product2" class="product-details">
+      <h3>Stop Sign</h3>
+      <img src="https://i.postimg.cc/mg5hST6b/Download-Stop-Road-Sign-Warning-Royalty-Free-Vector-Graphic-Pixabay-Google-Chrome-6-3-2025-3.png" alt="Stop Sign Full">
+      <p>Reflective stop sign perfect for roadways and industrial zones. Visible day and night with durable build.</p>
+      <strong>Price: $80</strong>
+    </div>
   </section>
 
   <section class="section">
@@ -254,51 +288,8 @@
   </section>
 
   <script>
-    const images = [
-      {
-        src: "https://i.postimg.cc/mg5hST6b/Download-Stop-Road-Sign-Warning-Royalty-Free-Vector-Graphic-Pixabay-Google-Chrome-6-3-2025-3.png",
-        caption: "Stop Sign Digital Display"
-      },
-      {
-        src: "https://i.postimg.cc/3wGp4yJM/Download-Stop-Road-Sign-Warning-Royalty-Free-Vector-Graphic-Pixabay-Google-Chrome-6-3-2025-3.png",
-        caption: "Roadside Safety Sign"
-      },
-      {
-        src: "https://i.postimg.cc/RV0ChNvg/nss-2.png",
-        caption: "School Information Display"
-      }
-    ];
-
-    let index = 0;
-    const img = document.getElementById("carousel-img");
-    const caption = document.getElementById("carousel-caption");
-
-    function updateCarousel() {
-      img.style.opacity = 0;
-      setTimeout(() => {
-        img.src = images[index].src;
-        caption.textContent = images[index].caption;
-        img.style.opacity = 1;
-      }, 300);
-    }
-
-    function nextImage() {
-      index = (index + 1) % images.length;
-      updateCarousel();
-    }
-
-    function prevImage() {
-      index = (index - 1 + images.length) % images.length;
-      updateCarousel();
-    }
-
-    document.getElementById("next").addEventListener("click", nextImage);
-    document.getElementById("prev").addEventListener("click", prevImage);
-
-    setInterval(nextImage, 5000);
-
-    function toggleAppearance() {
-      document.body.classList.toggle("dark");
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
     }
   </script>
 
