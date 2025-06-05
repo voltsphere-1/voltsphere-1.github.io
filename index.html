@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Voltsphere Catalog</title>
+  <meta charset="UTF-8" />
+  <title>Voltsphere Catalog with Cart</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -10,145 +11,124 @@
       margin: 0;
       padding: 0;
     }
-
     header {
       background: #1016c4;
       color: white;
       padding: 20px;
       text-align: center;
     }
-
-    .catalog {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+    .catalog, .cart {
       padding: 20px;
-      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
     }
-
     .product-card {
       background: white;
-      width: 280px;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      overflow: hidden;
-      text-align: center;
       padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      margin: 20px;
+      width: 250px;
+      float: left;
     }
-
     .product-card img {
       width: 100%;
-      height: auto;
-      border-radius: 8px;
+      border-radius: 10px;
     }
-
-    .product-name {
-      font-size: 18px;
-      margin: 10px 0;
-      font-weight: bold;
-    }
-
-    .price {
-      color: green;
-      margin-bottom: 10px;
-    }
-
     select, button {
+      margin-top: 10px;
       padding: 8px;
-      margin: 5px 0;
       width: 90%;
       border-radius: 5px;
-      border: 1px solid #ccc;
     }
-
     button {
-      background-color: #1016c4;
+      background: #1016c4;
       color: white;
+      border: none;
       cursor: pointer;
     }
-
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.6);
-    }
-
-    .modal-content {
-      background-color: #fff;
-      margin: 10% auto;
+    .cart {
+      clear: both;
+      background: #fff;
+      margin-top: 40px;
       padding: 20px;
       border-radius: 10px;
-      width: 300px;
+    }
+    .cart h2 {
       text-align: center;
     }
-
-    .close {
-      float: right;
-      font-size: 20px;
-      font-weight: bold;
-      cursor: pointer;
+    .cart-item {
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
     }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>Voltsphere Systems LLC - Product Catalog</h1>
+  <h1>Voltsphere Product Catalog</h1>
 </header>
 
 <section class="catalog">
-
   <div class="product-card">
-    <img src="https://i.postimg.cc/RV0ChNvg/nss-2.png" alt="Sample Display">
-    <div class="product-name">Digital LED Display</div>
-    <div class="price">$250</div>
-    <select>
-      <option>Select Size</option>
+    <img src="https://i.postimg.cc/RV0ChNvg/nss-2.png" alt="LED Display" />
+    <h3>LED Display</h3>
+    <p>$250</p>
+    <select id="size-1">
+      <option value="">Select Size</option>
       <option>Small</option>
       <option>Medium</option>
       <option>Large</option>
     </select>
-    <button onclick="alert('Added to cart')">Add to Cart</button>
-    <button onclick="openModal('Digital LED Display', '$250', 'https://i.postimg.cc/RV0ChNvg/nss-2.png')">Quick View</button>
+    <button onclick="addToCart('LED Display', 250, document.getElementById('size-1').value)">Add to Cart</button>
   </div>
 
-  <!-- Duplicate above block for more products -->
+  <!-- You can duplicate this block for more products with new IDs -->
 
 </section>
 
-<!-- Modal -->
-<div id="quickViewModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <img id="modalImg" src="" alt="" style="width:100%; border-radius:8px;">
-    <h2 id="modalTitle"></h2>
-    <p id="modalPrice"></p>
-  </div>
-</div>
+<section class="cart">
+  <h2>Your Cart</h2>
+  <div id="cart-items"></div>
+</section>
 
 <script>
-  function openModal(name, price, imageUrl) {
-    document.getElementById("modalTitle").innerText = name;
-    document.getElementById("modalPrice").innerText = price;
-    document.getElementById("modalImg").src = imageUrl;
-    document.getElementById("quickViewModal").style.display = "block";
-  }
+  // Load cart from localStorage on page load
+  window.onload = function () {
+    displayCart();
+  };
 
-  function closeModal() {
-    document.getElementById("quickViewModal").style.display = "none";
-  }
-
-  window.onclick = function(event) {
-    const modal = document.getElementById("quickViewModal");
-    if (event.target == modal) {
-      modal.style.display = "none";
+  function addToCart(name, price, size) {
+    if (!size) {
+      alert("Please select a size");
+      return;
     }
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({ name, price, size });
+    localStorage.setItem("cart", JSON.stringify(cart));
+    displayCart();
+    alert(`${name} (${size}) added to cart.`);
+  }
+
+  function displayCart() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartItemsDiv = document.getElementById("cart-items");
+
+    if (cart.length === 0) {
+      cartItemsDiv.innerHTML = "<p>Your cart is empty.</p>";
+      return;
+    }
+
+    cartItemsDiv.innerHTML = "";
+    cart.forEach((item, index) => {
+      cartItemsDiv.innerHTML += `
+        <div class="cart-item">
+          <strong>${item.name}</strong> — ${item.size} — $${item.price}
+        </div>
+      `;
+    });
   }
 </script>
 
