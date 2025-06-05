@@ -1,62 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Voltsphere Catalog</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Voltsphere Systems LLC</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f0f0f0;
       margin: 0;
       padding: 0;
+      background-color: #f0f0f0;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.dark {
+      background-color: #1a1a1a;
+      color: #ddd;
     }
 
     header {
-      background: #1016c4;
+      background-color: #1016c4;
       color: white;
-      padding: 20px;
+      padding: 30px 20px;
       text-align: center;
+      position: relative;
     }
 
-    .catalog {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 20px;
-      gap: 20px;
+    .logo {
+      width: 120px;
+      border-radius: 10px;
     }
 
-    .product-card {
-      background: white;
-      width: 280px;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      overflow: hidden;
-      text-align: center;
-      padding: 15px;
-    }
-
-    .product-card img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-
-    .product-name {
-      font-size: 18px;
-      margin: 10px 0;
+    .toggle-mode {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 6px 12px;
+      background-color: white;
+      color: #1016c4;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
       font-weight: bold;
     }
 
-    .price {
-      color: green;
+    h1 {
+      font-size: 2.5rem;
+      margin: 10px 0 0;
+    }
+
+    h2.section-title {
+      background-color: #1016c4;
+      color: white;
+      padding: 10px;
+      margin: 0;
+      text-align: center;
+    }
+
+    .section {
+      padding: 30px 20px;
+      max-width: 900px;
+      margin: 20px auto;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    body.dark .section {
+      background-color: #2a2a2a;
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+
+    li {
       margin-bottom: 10px;
     }
 
-    select, button {
-      padding: 8px;
-      margin: 5px 0;
-      width: 90%;
+    blockquote {
+      border-left: 4px solid #1016c4;
+      padding-left: 16px;
+      font-style: italic;
+      color: #555;
+      background-color: #f9f9f9;
+      margin: 20px 0;
+    }
+
+    .slider-container {
+      display: flex;
+      overflow-x: auto;
+      padding: 10px 0;
+      gap: 16px;
+      scroll-behavior: smooth;
+      justify-content: center;
+    }
+
+    .slider-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slider-item {
+      text-align: center;
+    }
+
+    .slider-item img {
+      width: 180px;
+      height: 130px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: block;
+      margin: 0 auto 6px;
+      cursor: pointer;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px 5px;
+      background-color: #1016c4;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
       border-radius: 5px;
       border: 1px solid #ccc;
     }
@@ -64,93 +142,156 @@
     button {
       background-color: #1016c4;
       color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
       cursor: pointer;
     }
 
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.6);
+    .catalog {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
     }
 
-    .modal-content {
-      background-color: #fff;
-      margin: 10% auto;
-      padding: 20px;
+    .catalog-item {
+      width: 180px;
+      background: #fafafa;
       border-radius: 10px;
-      width: 300px;
+      padding: 10px;
       text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
 
-    .close {
-      float: right;
-      font-size: 20px;
-      font-weight: bold;
+    .catalog-item img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
       cursor: pointer;
+    }
+
+    body.dark .catalog-item {
+      background-color: #333;
+    }
+
+    .product-details {
+      margin-top: 20px;
+    }
+
+    .product-details img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    a {
+      color: #1016c4;
+    }
+
+    body.dark a {
+      color: #90c4ff;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Voltsphere Systems LLC - Product Catalog</h1>
-</header>
+  <header>
+    <img src="https://i.postimg.cc/0QL3sX2g/hh-2.png" alt="Voltsphere Logo" class="logo" />
+    <button class="toggle-mode" onclick="toggleDarkMode()">Switch Appearance</button>
+    <h1>Voltsphere Systems LLC</h1>
+    <p>Signware & Digital Display Solutions</p>
+  </header>
 
-<section class="catalog">
-
-  <div class="product-card">
-    <img src="https://i.postimg.cc/RV0ChNvg/nss-2.png" alt="Sample Display">
-    <div class="product-name">Digital LED Display</div>
-    <div class="price">$250</div>
-    <select>
-      <option>Select Size</option>
-      <option>Small</option>
-      <option>Medium</option>
-      <option>Large</option>
-    </select>
-    <button onclick="alert('Added to cart')">Add to Cart</button>
-    <button onclick="openModal('Digital LED Display', '$250', 'https://i.postimg.cc/RV0ChNvg/nss-2.png')">Quick View</button>
+  <!-- Slider -->
+  <div class="slider-container">
+    <div class="slider-item">
+      <img src="https://i.postimg.cc/RV0ChNvg/nss-2.png" alt="Digital Display 1">
+      <p>Outdoor Display</p>
+    </div>
+    <div class="slider-item">
+      <img src="https://i.postimg.cc/mg5hST6b/Download-Stop-Road-Sign-Warning-Royalty-Free-Vector-Graphic-Pixabay-Google-Chrome-6-3-2025-3.png" alt="Digital Display 2">
+      <p>Warning Sign</p>
+    </div>
+    <div class="slider-item">
+      <img src="https://i.postimg.cc/3wGp4yJM/Download-Stop-Road-Sign-Warning-Royalty-Free-Vector-Graphic-Pixabay-Google-Chrome-6-3-2025-3.png" alt="Display Example">
+      <p>Traffic Sign</p>
+    </div>
   </div>
 
-  <!-- Duplicate above block for more products -->
+  <section class="section">
+    <h2 class="section-title">Company Overview</h2>
+    <ul>
+      <li><strong>Name:</strong> Voltsphere Systems LLC</li>
+      <li><strong>Founded:</strong> 2024</li>
+      <li><strong>Location:</strong> Entebbe</li>
+      <li><strong>Mission:</strong> To illuminate brands and messages through cutting-edge, energy-efficient digital display solutions.</li>
+      <li><strong>Vision:</strong> To become a leading provider of smart, connected signage that transforms spaces and experiences.</li>
+    </ul>
+  </section>
 
-</section>
+  <section class="section">
+    <h2 class="section-title">Product Catalog</h2>
+    <div class="catalog">
+      <div class="catalog-item">
+        <a href="#product1"><img src="https://i.postimg.cc/RV0ChNvg/nss-2.png" alt="LED Board" /></a>
+        <h4>LED Board</h4>
+        <p>$150</p>
+      </div>
+      <div class="catalog-item">
+        <a href="#product2"><img src="https://i.postimg.cc/mg5hST6b/Download-Stop-Road-Sign-Warning-Royalty-Free-Vector-Graphic-Pixabay-Google-Chrome-6-3-2025-3.png" alt="Stop Sign" /></a>
+        <h4>Stop Sign</h4>
+        <p>$80</p>
+      </div>
+    </div>
 
-<!-- Modal -->
-<div id="quickViewModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <img id="modalImg" src="" alt="" style="width:100%; border-radius:8px;">
-    <h2 id="modalTitle"></h2>
-    <p id="modalPrice"></p>
-  </div>
-</div>
+    <div id="product1" class="product-details">
+      <h3>LED Board</h3>
+      <img src="https://i.postimg.cc/RV0ChNvg/nss-2.png" alt="LED Board Full">
+      <p>High-brightness digital LED board ideal for outdoor advertising. Weather resistant and remotely programmable.</p>
+      <strong>Price: $150</strong>
+    </div>
 
-<script>
-  function openModal(name, price, imageUrl) {
-    document.getElementById("modalTitle").innerText = name;
-    document.getElementById("modalPrice").innerText = price;
-    document.getElementById("modalImg").src = imageUrl;
-    document.getElementById("quickViewModal").style.display = "block";
-  }
+    <div id="product2" class="product-details">
+      <h3>Stop Sign</h3>
+      <img src="https://i.postimg.cc/mg5hST6b/Download-Stop-Road-Sign-Warning-Royalty-Free-Vector-Graphic-Pixabay-Google-Chrome-6-3-2025-3.png" alt="Stop Sign Full">
+      <p>Reflective stop sign perfect for roadways and industrial zones. Visible day and night with durable build.</p>
+      <strong>Price: $80</strong>
+    </div>
+  </section>
 
-  function closeModal() {
-    document.getElementById("quickViewModal").style.display = "none";
-  }
+  <section class="section">
+    <h2 class="section-title">Contact Us</h2>
+    <ul>
+      <li>📞 Phone: +256741282363</li>
+      <li>📧 Email: voltsphere1@gmail.com</li>
+      <li>📍 Location: Entebbe</li>
+      <li>🔗 Instagram: <a href="https://www.instagram.com/voltsphere101" target="_blank">voltsphere101</a></li>
+    </ul>
+    <a class="button" href="https://wa.me/256741282363" target="_blank">Chat on WhatsApp</a>
+    <a class="button" href="https://www.instagram.com/voltsphere101" target="_blank">Visit Instagram</a>
 
-  window.onclick = function(event) {
-    const modal = document.getElementById("quickViewModal");
-    if (event.target == modal) {
-      modal.style.display = "none";
+    <h3>Send a Message</h3>
+    <form>
+      <label for="name">Your Name</label>
+      <input type="text" id="name" placeholder="Enter your name" required>
+
+      <label for="email">Your Email</label>
+      <input type="email" id="email" placeholder="Enter your email" required>
+
+      <label for="message">Your Message</label>
+      <textarea id="message" rows="4" placeholder="Type your message here..." required></textarea>
+
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
     }
-  }
-</script>
+  </script>
 
 </body>
 </html>
